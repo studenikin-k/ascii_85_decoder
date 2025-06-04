@@ -10,11 +10,11 @@ std::string decoder(const std::string &input) {
 
     for (int i = 0; i < input.size(); ++i) {
         if (input[i] < '!' || input[i] > 'u') {
-            std::cerr << "Ошибка, неизвестный символ: " << input[i] << std::endl;
-            std::exit(1);
+            throw std::invalid_argument("Ошибка, неизвестный символ");
         }
         VecToDecode.push_back(static_cast<uint8_t>(input[i]));
     }
+
 
     const int groupSize = 5;
 

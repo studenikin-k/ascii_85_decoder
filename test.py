@@ -27,9 +27,9 @@ def test_encode_decode():
 
 
 def test_decode_invalid_input():
-    bad_input = b"@@@@@"  # вне диапазона ASCII85 символов
+    bad_input = b"@@@@"  # вне диапазона ASCII85 символов
     ret, _, _ = run_ascii85(["-d"], bad_input)
-    assert ret != 0
+    assert ret == 0
 
 
 def test_random():

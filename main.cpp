@@ -2,6 +2,7 @@
 #include "decoder.h"
 #include <iostream>
 #include <string>
+#include <stdexcept>
 
 
 // раблотает таким образом, вначале мы вводим
@@ -12,33 +13,39 @@
 // кодер/декодер отрабатывает и выводит нам информацию
 
 int main(int argc, char* argv[]) {
-    if (argc > 1) {
-        std::string flag = argv[1];
+    // внедряем try для работы с ошибками
+    try {
+        if (argc > 1) {
+            std::string flag = argv[1];
 
-        if (flag == "-d") {
-            std::string input;
-            std::getline(std::cin, input);
-            std::cout << decoder(input) << std::endl;
-            return 0;
-        }
+            if (flag == "-d") {
+                std::string input;
+                std::getline(std::cin, input);
+                std::cout << decoder(input) << std::endl;
+                return 0;
+            }
 
-        if (flag == "-e") {
-            std::string input;
-            std::getline(std::cin, input);
+            if (flag == "-e") {
+                std::string input;
+                std::getline(std::cin, input);
+                std::cout << coder(input) << std::endl;
+                return 0;
+            }
+
+            // обрабатываем флаг как текст кодирования
+            std::string input = flag;
             std::cout << coder(input) << std::endl;
             return 0;
         }
 
-        // обрабатываем флаг как текст кодирования
-        std::string input = flag;
+        // если просто запустить ascii85 без флагов, то текст обработается как кодируемый
+        std::string input;
+        std::getline(std::cin, input);
         std::cout << coder(input) << std::endl;
+
         return 0;
+    } catch (const std::exception &e) {
+        std::cerr << "Ошибка: " << e.what() << std::endl;
+        return 1;
     }
-
-    // если просто запустить ascii85 без флагов, то текст обработается как кодируемый
-    std::string input;
-    std::getline(std::cin, input);
-    std::cout << coder(input) << std::endl;
-
-    return 0;
 }
