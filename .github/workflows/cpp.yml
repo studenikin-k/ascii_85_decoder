@@ -13,24 +13,27 @@ jobs:
       - name: Install dependencies
         run: |
           sudo apt-get update
-          sudo apt-get install -y cmake g++ libgtest-dev
+          sudo apt-get install -y cmake g++ libgtest-dev python3 python3-pip
           sudo cmake -S /usr/src/gtest -B /usr/src/gtest/build
           sudo cmake --build /usr/src/gtest/build
           sudo cp /usr/src/gtest/build/lib/*.a /usr/lib
+          pip3 install pytest
 
-      - name: Build project
+      - name: build
         run: |
           cmake -S . -B build
           cmake --build build
 
-      - name: Install binary
+      - name: install binary ascii85
         run: sudo cmake --install build
 
-      - name: Run binary
+      - name: run to check work
         run: |
           OUT=$(echo -n "Hello" | ascii85 -e)
           echo "OUT=$OUT"
 
-      - name: Run tests
-        run: |
-          ./build/test
+      - name: run gtest
+        run: ./build/test
+
+      - name: run pytest
+        run: pytest
