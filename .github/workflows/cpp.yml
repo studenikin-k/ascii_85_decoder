@@ -36,4 +36,4 @@ jobs:
         run: ./build/test
 
       - name: run pytest
-        run: pytest
+        run: pytest test.py
