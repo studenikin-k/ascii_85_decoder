@@ -6,7 +6,7 @@
 int main () {
 
     std::string input;
-    std::cin >> input;
+    std::getline(std::cin, input);
 
 
     std::cout << coder(input) << std::endl;

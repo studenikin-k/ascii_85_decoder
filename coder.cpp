@@ -13,11 +13,12 @@ std::string coder(const std::string &input) {
 
     for (int i = 0; i < inputData.size(); i += groupSize) {
         uint32_t number = 0;
-        int byte = 0;
+        int bytesInGroup = 0;
+
         for (int j = 0; j < groupSize; ++j) {
             if (i + j < inputData.size()) {
                 number = (number << 8) | inputData[i + j];
-                byte++;
+                bytesInGroup++;
             } else {
                 number <<= 8;
             }
@@ -28,7 +29,8 @@ std::string coder(const std::string &input) {
             digits[k] = '!' + (number % 85);
             number /= 85;
         }
-        result.append(digits, 5);
+
+        result.append(digits, bytesInGroup + 1);
     }
 
     return result;
