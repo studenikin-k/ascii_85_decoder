@@ -16,7 +16,6 @@ int main(int argc, char* argv[]) {
         std::string flag = argv[1];
 
         if (flag == "-d") {
-            std::cout << "Введите текст для декодирования: ";
             std::string input;
             std::getline(std::cin, input);
             std::cout << decoder(input) << std::endl;
@@ -24,7 +23,6 @@ int main(int argc, char* argv[]) {
         }
 
         if (flag == "-e") {
-            std::cout << "Введите текст для кодирования: ";
             std::string input;
             std::getline(std::cin, input);
             std::cout << coder(input) << std::endl;
@@ -38,7 +36,6 @@ int main(int argc, char* argv[]) {
     }
 
     // если просто запустить ascii85 без флагов, то текст обработается как кодируемый
-    std::cout << "Введите текст для кодирования: ";
     std::string input;
     std::getline(std::cin, input);
     std::cout << coder(input) << std::endl;
