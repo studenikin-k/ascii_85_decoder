@@ -3,4 +3,6 @@ project(ascii_85_decoder)
 
 set(CMAKE_CXX_STANDARD 20)
 
-add_executable(ascii_85_decoder main.cpp)
+add_executable(main main.cpp
+        coder.cpp
+        coder.h)
