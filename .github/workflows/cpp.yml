@@ -1,0 +1,30 @@
+name: CI
+
+on: [ push, pull_request ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: checkout
+        uses: actions/checkout@v4
+
+      - name: Install cmake
+        run: sudo apt-get update && sudo apt-get install -y cmake g++
+
+      - name: build
+        run: |
+          cmake -S . -B build
+          cmake --build build
+
+      - name: Install binary
+        run: sudo cmake --install build
+
+      - name: start ascii
+        run: |
+          OUT=$(echo -n "Hello" | ascii85 -e)
+          echo "OUT=$OUT"
+
+          OUT1=$(echo -n "$OUT2" | ascii85 -d)
+          echo "OUT1=$OUT1"
