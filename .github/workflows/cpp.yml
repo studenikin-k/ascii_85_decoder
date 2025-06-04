@@ -1,6 +1,6 @@
 name: CI
 
-on: [push, pull_request]
+on: [ push, pull_request ]
 
 jobs:
   build:
@@ -17,7 +17,9 @@ jobs:
         run: |
           cmake -S . -B build
           cmake --build build
-          sudo make install
+
+      - name: Install binary
+        run: sudo cmake --install build
 
       - name: start ascii
         run: |
