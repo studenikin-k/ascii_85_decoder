@@ -3,6 +3,7 @@ project(ascii85_decoder)
 
 set(CMAKE_CXX_STANDARD 20)
 
+
 add_executable(ascii85
         main.cpp
         coder.cpp
@@ -11,3 +12,15 @@ add_executable(ascii85
         decoder.h)
 
 install(TARGETS ascii85 RUNTIME DESTINATION bin)
+
+
+
+find_package(GTest REQUIRED)
+
+add_executable(test
+        test.cpp
+        coder.cpp
+        decoder.cpp)
+
+
+target_link_libraries(test GTest::GTest GTest::Main)
