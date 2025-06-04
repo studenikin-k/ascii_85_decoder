@@ -1,4 +1,3 @@
-
 #ifndef CODER_H
 #define CODER_H
 

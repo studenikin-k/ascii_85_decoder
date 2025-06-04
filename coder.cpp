@@ -1,16 +1,12 @@
 #include "coder.h"
 
 
-
-
-std::string coder(const std::string& input) {
-
+std::string coder(const std::string &input) {
     std::string result;
     std::vector<uint8_t> inputData;
 
     for (int i = 0; i < input.size(); i++) {
-
-      inputData.push_back(static_cast<uint8_t>(input[i]));
+        inputData.push_back(static_cast<uint8_t>(input[i]));
     }
 
     const int groupSize = 4;
