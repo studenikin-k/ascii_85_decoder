@@ -23,7 +23,6 @@ std::string coder(const std::string &input) {
                 number <<= 8;
             }
         }
-
         char digits[5];
         for (int k = 4; k >= 0; --k) {
             digits[k] = '!' + (number % 85);
